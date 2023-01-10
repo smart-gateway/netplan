@@ -8,7 +8,7 @@ class netplan::config {
 
   # Setup the notify if netplan is setup to be applied
   $notify = $::netplan::netplan_apply ? {
-    true    => Exec['netplan_try'],
+    true    => Exec['netplan-apply'],
     default => undef,
   }
 

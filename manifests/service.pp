@@ -10,9 +10,10 @@ class netplan::service {
   # TODO: Add code to output the problems somewhere the admin/user can debug it if there are problems
 
   # Apply configurations
-  exec { 'netplan_try':
-    command     => '/usr/sbin/netplan try --timeout 1',
+  exec { 'netplan-apply':
+    command     => '/usr/sbin/netplan apply',
     logoutput   => 'on_failure',
+    onlyif      => '/usr/sbin/netplan try --timeout 1',
     refreshonly => true,
   }
 }
